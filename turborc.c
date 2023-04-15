@@ -1351,7 +1351,7 @@ static int cmpsna(const void *a, const void *b) {
   return CMPSA(a, b, len_t, len);
 }
 
-int main(int argc, char *argv[]) { return 0; }
+/* int main(int argc, char *argv[]) { return 0; } */
 //---------------------------------------------- main : benchmark + file
 // compression ----------------------------------------------
 int entropy_encoder(int argc, char *argv[]) {
