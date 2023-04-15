@@ -144,7 +144,7 @@ endif
 endif
 endif
 
-all: turborc
+all: turborc.o librc.a
 
 ifneq ($(NOCOMP), 1)
 LIB=rc_ss.o rc_s.o rccdf.o rcutil.o bec_b.o rccm_s.o rccm_ss.o rcqlfc_s.o rcqlfc_ss.o rcqlfc_sf.o 
@@ -196,8 +196,8 @@ CFLAGS+=-DNO_COMP
 endif
 
 
-#librc.a: $(LIB)
-#	ar cr $@ $+
+librc.a: $(LIB)
+	ar cr $@ $+
 turborc.o: turborc.c
 	$(CC) -O3 $(CFLAGS) $(MARCH) -c turborc.c -o turborc.o
 
