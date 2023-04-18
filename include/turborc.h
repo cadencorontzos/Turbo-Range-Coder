@@ -822,7 +822,8 @@ size_t rccdfdec8(unsigned char *in, size_t outlen,
 size_t rccdfenc8(unsigned char *in, size_t inlen, unsigned char *out);
 size_t rccdfidec8(unsigned char *in, size_t outlen, unsigned char *out);
 size_t rccdfienc8(unsigned char *in, size_t inlen, unsigned char *out);
-int entropy_encoder(int argc, char *argv[]); // lets us call main
+int entropy_encoder(int argc, char *argv[], int code,
+                    int decode); // lets us call main
 
 void trcini(void);
 //------ predictor ids (used in turborc.c)

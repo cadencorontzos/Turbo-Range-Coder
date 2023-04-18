@@ -1354,11 +1354,15 @@ static int cmpsna(const void *a, const void *b) {
 /* int main(int argc, char *argv[]) { return 0; } */
 //---------------------------------------------- main : benchmark + file
 // compression ----------------------------------------------
-int entropy_encoder(int argc, char *argv[]) {
+int entropy_encoder(int argc, char *argv[], int code, int decode) {
+  /* for (int i = 0; i < argc; i++) { */
+  /*   printf(argv[i]); */
+  /*   printf("\n"); */
+  /* } */
   unsigned _bsize = 1536, prdid = RC_PRD_S;
-  int xstdout = 0, xstdin = 0, decomp = 0, codec = 0, dobench = 0, cmp = 1, c,
-      digit_optind = 0, decs = 0, divs = 0, skiph = 0, isize = 4, dfmt = 0,
-      mdelta = 0, kid = 0, osize = 1;
+  int xstdout = 0, xstdin = 0, decomp = decode, codec = code, dobench = 0,
+      cmp = 1, c, digit_optind = 0, decs = 0, divs = 0, skiph = 0, isize = 4,
+      dfmt = 0, mdelta = 0, kid = 0, osize = 1;
   char *scmd = NULL, prids[8] = "s",
        *keysep = NULL; // fdbg = fopen("test.dat", "wb"); if(!fdbg)
                        // perror("fopen failed");
@@ -1871,6 +1875,7 @@ int entropy_encoder(int argc, char *argv[]) {
     xstdin++;
   unsigned long long filen = 0, folen = 0;
   char *finame = xstdin ? "stdin" : argv[optind], *foname, _foname[1027];
+
   if (verbose > 1)
     printf("'%s'\n", finame);
 
@@ -1891,6 +1896,8 @@ int entropy_encoder(int argc, char *argv[]) {
         strcat(_foname, ".rc");
         foname = _foname;
       }
+    } else {
+      foname = argv[3];
     }
   }
   if (!strcasecmp(finame, foname)) {
@@ -1935,6 +1942,7 @@ int entropy_encoder(int argc, char *argv[]) {
         break;
 #ifndef NO_RC
       case 1:
+        printf("here 1");
         clen = rcenc(in, inlen, out, prdid);
         break;
       case 2:
